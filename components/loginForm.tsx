@@ -10,7 +10,7 @@ export function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('email');
     }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +21,7 @@ export function LoginForm() {
             const loginResult = await userController.login({ email, password });
             if (loginResult.message) {
                 await InputAlert('Bienvenido', 'success')
-                
+                localStorage.setItem("email", email)
                 window.location.href = '/dashboard';
             } else {
                 await InputAlert('Usuario o contraseña incorrectos', 'error');

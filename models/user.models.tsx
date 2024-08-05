@@ -14,3 +14,12 @@ export interface ResponseCreateUser{
 export interface ResponseLoginUser{
     message: string,
 }
+
+export interface textError{
+    text: string,
+    language: string
+}
+
+export interface ResponseTextError{
+    message: string,
+}
