@@ -1,5 +1,5 @@
 'use client'
-import Image from "next/image"
+
 import { useEffect } from "react";
 export default function Hero() {
     useEffect(() => {
@@ -11,7 +11,6 @@ export default function Hero() {
                 <div className="container h-full mx-auto sm:p-10">
                     <nav className="flex items-center justify-between px-4">
                         <div className="flex gap-3 text-4xl font-bold">
-                            <Image src="/media/cloudy.png" alt="Descripción" width={50} height={30}/>
                             Data Leaker Gates<span className="text-yellow-300">.</span>
                         </div>
                     </nav>
