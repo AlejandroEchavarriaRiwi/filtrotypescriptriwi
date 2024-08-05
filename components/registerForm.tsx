@@ -10,7 +10,7 @@ export function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('email');
     }, []);
     
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

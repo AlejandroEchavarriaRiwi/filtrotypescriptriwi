@@ -1,5 +1,7 @@
+import GetPosts from "@/components/getposts";
+
 export default function Dashboard(){
     return(
-        <h1>Dashboard</h1>
+        <GetPosts/>
     )
 }
