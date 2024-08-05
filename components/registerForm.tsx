@@ -1,27 +1,30 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserController } from "../controllers/user.controller";
 import InputAlert from "@/app/alerts/successAlert";
 
 
 export function RegisterForm() {
-    const [username, setUsername] = useState("");
+    const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-;
 
+    useEffect(() => {
+        localStorage.removeItem('token');
+    }, []);
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const userController = new UserController('https://reqres.in');
+        const userController = new UserController('https://api-posts.codificando.xyz/');
 
         try {
-            const createResult = await userController.createUser({ username, password });
+            const createResult = await userController.createUser({ email, password });
             if(createResult)
-                await InputAlert('User succesfully created', 'success')
+                await InputAlert('Usuario creado exitosamente', 'success')
             localStorage.clear()
             window.location.href = '/login'
         } catch (error) {
-            await InputAlert('Error to create user', 'error')
+            await InputAlert('Error al crear usuario', 'error')
         }
     };
 
@@ -47,7 +50,7 @@ export function RegisterForm() {
                                         required
                                         className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-blue-600"
                                         placeholder="Ingresa tu usuario"
-                                        value={username}
+                                        value={email}
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-4" viewBox="0 0 24 24">
@@ -62,7 +65,7 @@ export function RegisterForm() {
                                     <input
                                         name="password"
                                         id="password"
-                                        type={password ? "text" : "password"}
+                                        type={showPassword ? "text" : "password"}
                                         required
                                         className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-green-500"
                                         placeholder="Ingresa tu contraseña"
