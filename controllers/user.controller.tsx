@@ -30,7 +30,7 @@ export class UserController{
     }
 
     async login(data: RequestLoginUser): Promise<ResponseLoginUser> {
-        const endPointLogin: string = 'api/login'
+        const endPointLogin: string = 'auth/login'
         const headers: Record<string,string> = {
             'Content-Type':'application/json'
         }
@@ -42,13 +42,14 @@ export class UserController{
         const url = this.urlApi + endPointLogin
         const result: Response = await fetch(url, reqOptions)
     
-        if(result.status !== 200){
+        if(result.status !== 201){
             const errorBody = await result.json()
             console.log(`Response body: ${errorBody.message}`)
             throw new Error("User or password incorrect")
         }
         
         const responseBodyLogin: ResponseLoginUser = await result.json()
+        console.log(responseBodyLogin)
         return responseBodyLogin
     }
 }
