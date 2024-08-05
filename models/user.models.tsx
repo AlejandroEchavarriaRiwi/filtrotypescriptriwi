@@ -8,7 +8,6 @@ export interface RequestLoginUser{
     password:string
 }
 export interface ResponseCreateUser{
-    token: string,
     message: string,
 }
 
